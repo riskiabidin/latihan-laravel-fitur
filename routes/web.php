@@ -169,3 +169,120 @@ Route::get('produk/rawexpression2', function(){
 
     echo $produk;
 });
+
+// menampilikan data dengan kondisi tertentu(where1) tanpa eloquent
+
+Route::get('produk/where1-1', function(){
+    $produk = DB::table('produk')->where('harga_jual','=', 2000)->get();
+    echo $produk;
+});
+
+// menampilikan data dengan kondisi tertentu(where1) dengan eloquent
+
+Route::get('produk/where1-2', function(){
+    $produk = App\Produk::where('harga_jual','=', 2000)->get();
+    echo $produk;
+});
+
+//menampilkan data beberapa kondisi(where2) tanpa eloquent
+
+Route::get('produk/where2-1', function(){
+    $produk = DB::table('produk')->where([
+        ['harga_jual', '<=', 2000],
+        ['id','>=', 3]
+    ])->get();
+
+    echo $produk;
+});
+
+// menampilkan data beberapa kondisi(where2) dengan eloquent
+
+Route::get('produk/where2-2', function(){
+    $produk = App\Produk::where([
+        ['harga_jual', '<=', 2000],
+        ['id', '>=', 3]
+    ])->get();
+
+    echo $produk;
+});
+
+// menampilkan data beberapa kondisi menggunakan OR tanpa eloquent
+
+Route::get('produk/whereOR1', function(){
+    $produk = DB::table('produk')->where('id', '<=', 3)->orWhere('nama_barang', '=', 'sabun mandi')->get();
+
+    echo $produk;
+});
+
+// menampilkan data beberapa kondisi menggunakan OR dengan eloquent
+
+Route::get('produk/whereOR2', function(){
+    $produk = App\Produk::where('id', '<=', 3)->orWhere('nama_barang', '!=', 'sabun mandi')->get();
+    
+    echo $produk;
+});
+
+// menampilkan data diantara 2 batas nilai(whereBetween) tanpa eloquent
+
+Route::get('produk/whereBetween1', function(){
+    $produk = DB::table('produk')->whereBetween('id', [3, 5])->get();
+
+    echo $produk;
+});
+
+//menampilkan data diantara 2 batas nilai(whereBetween) dengan eloquent
+
+Route::get('produk/whereBetween2', function(){
+    $produk = App\Produk::whereBetween('id', [1, 3])->get();
+
+    echo $produk;
+});
+
+// menampilkan data tidak diantara 2 batas nilai(whereNotBetween) tanpa eloquent`
+
+Route::get('produk/whereNotBetween1', function(){
+    $produk = DB::table('produk')->whereNotBetween('id', [1, 3])->get();
+
+    echo $produk;
+});
+
+//menampilkan data tidak diantara 2 batas nilai(whereNotBetween) dengan eloquent
+
+Route::get('produk/whereNotBetween2', function(){
+    $produk = App\Produk::whereNotBetween('id', [3, 5])->get();
+
+    echo $produk;
+});
+
+// menmpilkan data sesuai dengan yang disebutkan(whereIn) tanpa eloquent
+
+Route::get('produk/whereIn1', function(){
+    $produk = DB::table('produk')->whereIn('id', [1, 3, 5])->get();
+
+    echo $produk;
+});
+
+//menampilkan data sesuai dengan yang disebutkan(whereIn) dengan eloquent
+
+Route::get('produk/whereIn2', function(){
+    $produk = App\Produk::whereIn('id', [4, 5])->get();
+
+    echo $produk;
+});
+
+// menampilkan data selain yang disebutkan tanpa eloquent
+
+Route::get('produk/whereNotIn1', function(){
+    $produk = DB::table('produk')->whereNotIn('id', [1, 2, 3])->get();
+
+    echo $produk;
+});
+
+// menampilkan data selain yang disebutkan dengan eloquent
+
+Route::get('produk/whereNotIn2', function(){
+    $produk = App\Produk::whereNotIn('id', [4, 5])->get();
+
+    echo $produk;
+});
+
