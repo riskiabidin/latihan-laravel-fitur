@@ -286,3 +286,153 @@ Route::get('produk/whereNotIn2', function(){
     echo $produk;
 });
 
+// menampilkan data dengan nilai suatu data NULL tanpa eloquent
+
+Route::get('produk/whereNull1', function(){
+    $produk = DB::table('produk')->whereNull('created_at')->get();
+
+    echo $produk;
+
+});
+
+
+// menampilkan data dengan nilai suatu data NULL dengan eloquent
+
+Route::get('produk/whereNull2', function(){
+    $produk = App\Produk::whereNull('harga_jual')->get();
+
+    echo $produk;
+});
+
+
+//menampilkan data dengan nilai suatu kolom tidak NULL tanpa eloquent
+
+Route::get('produk/whereNotNull1', function(){
+    $produk = DB::table('produk')->whereNotNull('harga_jual')->get();
+
+    echo $produk;
+});
+
+// menampilkan data dengan nilai tidak NULL dengan eloquent
+
+Route::get('produk/whereNotNull2', function(){
+    $produk = App\Produk::whereNotNull('harga_jual')->get();
+
+    echo $produk;
+});
+
+//menampilkan data dengan nilai tanggal tanpa eloquent
+
+Route::get('produk/whereDate1', function(){
+    $produk = DB::table('produk')->whereDate('created_at', '2017-06-01')->get();
+
+    echo $produk;
+});
+
+//menampilkan data dengan nilai tanggal dengan eloquent
+
+Route::get('produk/whereDate2', function(){
+    $produk = App\Produk::whereDate('created_at', '2017-06-01')->get();
+
+    echo $produk;
+});
+
+// menampilkan data dengan nilai tanggal saja tanpa eloquent
+
+Route::get('produk/whereDay1', function(){
+    $produk = DB::table('produk')->whereDay('created_at', '01')->get();
+
+    echo $produk;
+});
+
+// menampilkan data dengan nilai tanggal saja dengan eloquent
+
+Route::get('produk/whereDay2', function(){
+    $produk = App\Produk::whereDay('created_at', '01')->get();
+
+    echo $produk;
+});
+
+// menampilkan data dengan nilai bulan tanpa eloquent
+
+Route::get('produk/whereMonth1', function(){
+    $produk = DB::table('produk')->whereMonth('created_at', '06')->get();
+
+    echo $produk;
+});
+
+// menampilkan data dengan nilai bulan dengan eloquent
+
+Route::get('produk/whereMonth2', function(){
+    $produk = App\Produk::whereMonth('created_at', '06')->get();
+
+    echo $produk;
+});
+
+// menampilkan data dengan nilai tahun tanpa eloquent
+
+Route::get('produk/whereYear1', function(){
+    $produk = DB::table('produk')->whereYear('created_at', '2017')->get();
+
+    echo $produk;
+});
+
+// menampilkan data dengan nilai tahun dengan eloquent
+
+Route::get('produk/whereYear2', function(){
+    $produk = App\Produk::whereYear('created_at', '2017')->get();
+
+    echo $produk;
+});
+
+
+//menampilkan data dengan membandingkan 2 kolom tanpa eloquent
+
+Route::get('produk/whereColumn1', function(){
+    $produk = DB::table('produk')->whereColumn('created_at', '<', 'updated_at')->get();
+
+    echo $produk;
+});
+
+// whereTime()->get();
+
+// menampilkan data dengan membandingkan 2 kolom dengan eloquent
+
+Route::get('produk/whereColumn2', function(){
+    $produk = App\Produk::whereColumn('created_at', '<', 'updated_at')->get();
+
+    echo $produk;
+});
+
+
+// menampilkan data dengan urutan tertentu tanpa eloquent
+
+Route::get('produk/orderBy1', function(){
+    $produk = DB::table('produk')->orderBy('id', 'desc')->get();
+
+    echo $produk;
+});
+
+// menampilkan data dengan urutan tertentu dengan eloquent
+
+Route::get('produk/orderBy2', function(){
+    $produk = App\Produk::orderBy('id', 'asc')->get();
+
+    echo $produk;
+});
+
+// menampilkan data dengan urutan acak(random) tanpa eloquent
+
+Route::get('produk/inRandomOrder1', function(){
+    $produk = DB::table('produk')->inRandomOrder()->get();
+
+    echo $produk;
+});
+
+// menampilkan data dengan urutan acak(random) dengan eloquent
+
+Route::get('produk/inRandomOrder2', function(){
+    $produk = App\Produk::inRandomOrder()->get();
+
+    echo $produk;
+});
