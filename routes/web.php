@@ -436,3 +436,98 @@ Route::get('produk/inRandomOrder2', function(){
 
     echo $produk;
 });
+
+// menampilkan data dari terbaru tanpa menggunakan eloquent
+
+Route::get('produk/latest1', function(){
+    $produk = DB::table('produk')->latest()->get();
+
+    echo $produk;
+});
+
+// menampilkan data dari terbaru dengan menggunakan eloquent
+
+Route::get('produk/latest2', function(){
+    $produk = App\Produk::latest()->get();
+
+    echo $produk;
+});
+
+// menampilkan data dari terlama tanpa menggunakan eloquent
+
+Route::get('produk/oldest1', function(){
+    $produk = DB::table('produk')->oldest()->get();
+
+    echo $produk;
+});
+
+// menampilkan data dari terlama dengan menggunakan eloquent
+
+Route::get('produk/oldest2', function(){
+    $produk = App\Produk::oldest()->get();
+
+    echo $produk;
+});
+
+// menampilkan data menggunakan groupBY tanpa eloquent
+
+Route::get('produk/groupBy1', function(){
+    $produk = DB::table('produk')->groupBy()->get();
+
+    echo $produk;
+});
+
+// menampilkan data menggunakan groupBy dengan eloquent
+
+Route::get('produk/groupBy2', function(){
+    $produk = App\Produk::groupBY()->get();
+
+    echo $produk;
+});
+
+// menampilkan data dengan batas tertentu dan offset tertentu alternatif lain bisa menggunakan take() dan skip() tanpa eloquent
+
+Route::get('produk/limit1', function(){
+    $produk = DB::table('produk')->limit(3)->offset(2)->get();
+
+    echo $produk;
+});
+
+// menampilkan data dengan batasan terntetu dan offset tertentu dengan eloquent
+
+Route::get('produk/limit2', function(){
+    $produk = App\Produk::limit(3)->offset(2)->get();
+
+    echo $produk;
+});
+
+// alternatiflain untuk mengimplementasikan batasan tertentu take()->skip()
+Route::get('produk/take', function(){
+    $produk = DB::table('produk')->take(4)->skip(2)->get();
+
+    echo $produk;
+});
+
+// menampilkan data dari beberapa tabel menggunakan join tanpa eloquent
+
+Route::get('produk/join1', function(){
+    $produk = DB::table('produk')->join('kategori', 'kategori.id', '=', 'produk.kategori_id')->get();
+
+    echo $produk;
+});
+
+// menampilkan data dari beberapa tabel menggunakan join dengan eloquent
+
+Route::get('produk/join2', function(){
+    $produk = App\Produk::join('kategori', 'kategori.id', '=', 'produk.kategori_id')->get();
+
+    echo $produk;
+});
+
+// menampilkan data dari beberapa tabel menggunakan left join (data relasi berisi null juga ditampilkan) tanpa eloquent
+
+Route::get('produk/leftJoin1', function(){
+    $produk = DB::table('produk')->leftJoin('kategori', 'kategori.id', '=', 'produk.kategori_id')->get();
+
+    echo $produk;
+});
